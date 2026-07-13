@@ -55,6 +55,18 @@ function textValue(value, fallback = "尚未紀錄") {
   return text || fallback;
 }
 
+function publishedAtValue(value) {
+  const date = new Date(value);
+  if (!value || Number.isNaN(date.getTime())) return "尚未標示更新時間";
+  return `更新於 ${new Intl.DateTimeFormat("zh-TW", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(date)}`;
+}
+
 function renderSchedule(events, now) {
   const uniquePartners = new Set(events.map((event) => event.name.trim()).filter(Boolean));
   $("#month-label").textContent = `${now.getFullYear()} 年 ${now.getMonth() + 1} 月`;
@@ -177,6 +189,7 @@ function render(data) {
   renderMedications(data.medication_logs);
   renderFitness(data.fitness_logs);
   renderMedical(data.urology);
+  $("#published-at").textContent = publishedAtValue(data.published_at);
 }
 
 const dataNode = $("#site-data");

@@ -92,7 +92,7 @@ body {
   background: var(--accent);
   font-size: 0.8rem;
   font-weight: 900;
-  letter-spacing: 0.14em;
+  letter-spacing: 0;
 }
 
 .brand-caption,
@@ -106,7 +106,7 @@ body {
   color: var(--muted);
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
@@ -125,7 +125,7 @@ h1 {
   margin-bottom: 10px;
   font-size: clamp(2.6rem, 8vw, 5.8rem);
   line-height: 0.96;
-  letter-spacing: -0.055em;
+  letter-spacing: 0;
 }
 
 .hero-note { margin-bottom: 0; color: var(--muted); }
@@ -304,11 +304,74 @@ h1 {
 }
 .site-footer p { margin-bottom: 0; }
 
+[data-layout="compact"] .shell {
+  width: min(920px, calc(100% - 24px));
+  padding-top: 16px;
+}
+
+[data-layout="compact"] .dashboard-hero,
+[data-layout="compact"] .dashboard-section {
+  padding: 20px;
+}
+
+[data-layout="compact"] .hero-copy {
+  margin-top: 34px;
+}
+
+[data-layout="compact"] .dashboard-section {
+  margin-top: 10px;
+}
+
+[data-layout="compact"] .schedule-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+[data-layout="magazine"] .shell {
+  width: min(1240px, calc(100% - 40px));
+}
+
+[data-layout="magazine"] .dashboard-hero {
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+[data-layout="magazine"] .hero-copy {
+  margin-top: 120px;
+}
+
+[data-layout="magazine"] .schedule-list,
+[data-layout="magazine"] .fitness-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+[data-layout="focus"] .shell {
+  width: min(760px, calc(100% - 32px));
+}
+
+[data-layout="focus"] .hero-copy,
+[data-layout="focus"] .medication-grid,
+[data-layout="focus"] .fitness-grid,
+[data-layout="focus"] .medical-card {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+[data-layout="focus"] .recommendation {
+  border-left: 0;
+  border-top: 1px solid var(--line);
+  padding: 18px 0 0;
+}
+
 @media (max-width: 760px) {
   .hero-copy { display: grid; align-items: initial; margin-top: 44px; }
   .month-summary { width: 100%; min-width: 0; }
   .medication-grid, .fitness-grid { grid-template-columns: 1fr; }
   .medical-card { grid-template-columns: 1fr; }
+  [data-layout="compact"] .schedule-list,
+  [data-layout="magazine"] .schedule-list,
+  [data-layout="magazine"] .fitness-grid { grid-template-columns: 1fr; }
   .recommendation { border-left: 0; border-top: 1px solid var(--line); padding: 18px 0 0; }
 }
 
